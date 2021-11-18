@@ -8,8 +8,6 @@ RUN pip3 --version
 
 RUN pip3 install -r requirements.txt
 
-RUN . .
-
 CMD hostname -i
 
 ENTRYPOINT ['python3', 'app.py']
