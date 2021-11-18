@@ -1,5 +1,6 @@
 #!/bin/bash
 # Installing Docker and docker compose
+sudo apt-get update
 
 echo "----fetching Docker----"
 sudo apt-get update
