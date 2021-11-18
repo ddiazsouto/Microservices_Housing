@@ -10,4 +10,4 @@ RUN pip3 install -r requirements.txt
 
 CMD hostname -i
 
-ENTRYPOINT ['python3', 'app.py']
+ENTRYPOINT ["python", "app.py"]
