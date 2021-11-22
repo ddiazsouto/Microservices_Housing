@@ -12,4 +12,6 @@ COPY . .
 
 CMD hostname -i
 
+EXPOSE 5500
+
 ENTRYPOINT ["python", "app.py"]
