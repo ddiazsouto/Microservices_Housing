@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-    return 'Backend_url_gather'
+    return 'Backend_house_scrap'
 
 
 if __name__ == '__main__':

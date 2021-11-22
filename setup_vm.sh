@@ -30,3 +30,17 @@ sudo apt install python3-pip -y
 pip3 install --user ansible
 # check that ansible has been installed
 ansible --version
+
+sudo apt update 
+
+# And terraform
+
+ sudo apt-get install -y unzip wget
+ wget https://releases.hashicorp.com/terraform/0.14.6/terraform_0.14.6_linux_amd64.zip
+ unzip terraform_*_linux_*.zip
+ sudo mv terraform /usr/local/bin
+ rm terraform_*_linux_*.zip
+ terraform --version
+
+# Azure CLi 
+ curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
