@@ -113,6 +113,11 @@ resource "azurerm_linux_virtual_machine" "myterraformvm" {
         version   = "latest"
     }
 
+    storage_os_disk {
+    name              = "myosdisk1"
+    create_option     = "FromImage"
+    }
+
     computer_name  = "myvm"
     admin_username = "destruktor"
     disable_password_authentication = true
@@ -121,6 +126,10 @@ resource "azurerm_linux_virtual_machine" "myterraformvm" {
         username       = "destruktor"
         public_key     = tls_private_key.example_ssh.public_key_openssh
     }
+
+    os_profile_linux_config {
+    disable_password_authentication = false
+  }
 
     tags = {
         environment = "Scraper"
