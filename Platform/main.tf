@@ -58,7 +58,7 @@ resource "azurerm_public_ip" "myterraformpublicip" {
 
 
 resource "azurerm_virtual_network" "main" {
-  name                = "${var.prefix}-network"
+  name                = "mynetwork"
   address_space       = ["10.0.0.0/16"]
   location            = azurerm_resource_group.myterraformgroup.location
   resource_group_name = azurerm_resource_group.myterraformgroup.name
