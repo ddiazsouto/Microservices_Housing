@@ -30,7 +30,7 @@ resource "azurerm_virtual_network" "myterraformnetwork" {
     resource_group_name = azurerm_resource_group.myterraformgroup.name
 
     tags = {
-        environment = "Scraper"
+        environment = ${var.tag}
     }
 }
 
@@ -52,7 +52,7 @@ resource "azurerm_public_ip" "myterraformpublicip" {
     allocation_method            = "Dynamic"
 
     tags = {
-        environment = "Scraper"
+        environment = ${var.tag}
     }
 }
 
@@ -88,23 +88,27 @@ resource "azurerm_network_interface" "myterraformnic" {
 
 
 # Create (and display) an SSH key
-resource "tls_private_key" "example_ssh" {
+resource "tls_private_key" "ssh_key" {
   algorithm = "RSA"
   rsa_bits = 4096
 }
 output "tls_private_key" { 
-    value = tls_private_key.example_ssh.private_key_pem 
+    value = tls_private_key.ssh_key.private_key_pem 
     sensitive = false
 }
 
-# Create virtual machine
 resource "azurerm_linux_virtual_machine" "myterraformvm" {
     name                  = "myVM"
     location              = "eastus"
-    resource_group_name   = azurerm_resource_group.myterraformgroup.name    
+    resource_group_name   = azurerm_resource_group.myterraformgroup.name
     network_interface_ids = [azurerm_network_interface.myterraformnic.id]
-    size                  = "Standard_B1s"
+    size                  = "Standard_DS1_v2"
 
+    os_disk {
+        name              = "myOsDisk"
+        caching           = "ReadWrite"
+        storage_account_type = "Standard_LRS"
+    }
 
     source_image_reference {
         publisher = "Canonical"
@@ -113,23 +117,19 @@ resource "azurerm_linux_virtual_machine" "myterraformvm" {
         version   = "latest"
     }
 
-    storage_os_disk {
-    name              = "myosdisk1"
-    create_option     = "FromImage"
-    }
-
     computer_name  = "myvm"
-    admin_username = "destruktor"
+    admin_username = "azureuser"
     disable_password_authentication = true
 
     admin_ssh_key {
-        username       = "destruktor"
-        public_key     = tls_private_key.example_ssh.public_key_openssh
+        username       = "azureuser"
+        public_key     = tls_private_key.ssh_key.public_key_openssh
     }
+
+
 
     tags = {
-        environment = "Scraper"
+        environment = ${var.tag}
     }
-
-    #user_data = " git clone https://github.com/ddiazsouto/Microservices_Housing"
 }
+
