@@ -131,7 +131,7 @@ resource "azurerm_linux_virtual_machine" "myterraformvm" {
         public_key     = tls_private_key.ssh_key.public_key_openssh
     }
 
-    user_data = "git clone https://github.com/ddiazsouto?tab=repositories"
+    
 
     tags = {
         environment = "${var.tag}"
