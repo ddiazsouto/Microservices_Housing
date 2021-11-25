@@ -68,7 +68,7 @@ resource "azurerm_network_interface" "myterraformnic" {
   }
 }
 
-output "Publich IP address"{
+output "Public_IP_address"{
     value = azurerm_public_ip.myterraformpublicip.ip_address
 }
 
