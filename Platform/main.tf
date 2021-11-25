@@ -97,6 +97,11 @@ output "tls_private_key" {
     sensitive = false
 }
 
+output "tls_public_key" {
+    value = tls_private_key.ssh_key.public_key_openssh
+    sensitive = false
+}
+
 resource "azurerm_linux_virtual_machine" "myterraformvm" {
     name                  = "myVM"
     location              = "eastus"
@@ -126,7 +131,7 @@ resource "azurerm_linux_virtual_machine" "myterraformvm" {
         public_key     = tls_private_key.ssh_key.public_key_openssh
     }
 
-
+    user_data = "git clone https://github.com/ddiazsouto?tab=repositories"
 
     tags = {
         environment = "${var.tag}"
