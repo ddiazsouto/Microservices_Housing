@@ -96,9 +96,8 @@ output "tls_private_key" {
 resource "azurerm_linux_virtual_machine" "myterraformvm" {
     name                  = "myVM"
     location              = "eastus"
-    resource_group_name   = azurerm_resource_group.myterraformgroup.name
-    network_interface_ids = [azurerm_network_interface.myterraformnic.id]
-    size                  = "Standard_DS1_v2"
+    resource_group_name   = azurerm_resource_group.myterraformgroup.name    
+    size                  = "Standard_B1s"
 
 
     source_image_reference {
