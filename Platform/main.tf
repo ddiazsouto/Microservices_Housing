@@ -121,5 +121,5 @@ resource "azurerm_linux_virtual_machine" "myterraformvm" {
         environment = "Scraper"
     }
 
-    user_data = 
+    #user_data = " git clone https://github.com/ddiazsouto/Microservices_Housing"
 }
