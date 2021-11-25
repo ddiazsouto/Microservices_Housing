@@ -118,10 +118,6 @@ resource "azurerm_linux_virtual_machine" "myterraformvm" {
     create_option     = "FromImage"
     }
 
-    os_profile_linux_config {
-    disable_password_authentication = true
-    }
-
     computer_name  = "myvm"
     admin_username = "destruktor"
     disable_password_authentication = true
