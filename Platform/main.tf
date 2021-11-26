@@ -69,8 +69,9 @@ resource "azurerm_network_interface" "myterraformnic" {
 }
 
 output "Public_IP_address"{
-    value = azurerm_public_ip.myterraformpublicip.ip_address
+    value = azurerm_public_ip.myterraformpublicip.id
 }
+
 
 
 # Create (and display) an SSH key
@@ -124,3 +125,6 @@ resource "azurerm_linux_virtual_machine" "myterraformvm" {
     }
 }
 
+output "Second_try"{
+  value = azurerm_public_ip.myterraformpublicip.ip_address
+}
