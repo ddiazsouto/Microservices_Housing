@@ -68,11 +68,6 @@ resource "azurerm_network_interface" "myterraformnic" {
   }
 }
 
-output "Public_IP_address"{
-    value = azurerm_public_ip.myterraformpublicip.id
-}
-
-
 
 # Create (and display) an SSH key
 resource "tls_private_key" "ssh_key" {
@@ -95,6 +90,8 @@ resource "azurerm_linux_virtual_machine" "myterraformvm" {
     resource_group_name   = azurerm_resource_group.myterraformgroup.name
     network_interface_ids = [azurerm_network_interface.myterraformnic.id]
     size                  = "Standard_DS1_v2"
+
+    count = 3
 
     os_disk {
         name              = "myOsDisk"
