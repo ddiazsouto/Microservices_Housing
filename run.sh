@@ -1,3 +1,5 @@
+cd Platform
+
 terraform apply -auto-approve
 
 terraform output | awk '/\-{4,}/,/<np>/' | head -n 52 > llave
