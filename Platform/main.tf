@@ -125,6 +125,6 @@ resource "azurerm_linux_virtual_machine" "myterraformvm" {
     }
 }
 
-output "Second_try"{
+output "public_IP"{
   value = azurerm_public_ip.myterraformpublicip.ip_address
 }
