@@ -73,15 +73,7 @@ resource "tls_private_key" "ssh_key" {
   algorithm = "RSA"
   rsa_bits = 4096
 }
-output "tls_private_key" {
-    value = tls_private_key.ssh_key.private_key_pem
-    sensitive = false
-}
 
-output "tls_public_key" {
-    value = tls_private_key.ssh_key.public_key_openssh
-    sensitive = false
-}
 
 resource "azurerm_linux_virtual_machine" "myterraformvm" {
 
@@ -165,12 +157,3 @@ resource "azurerm_linux_virtual_machine" "workervm" {
         environment = "${var.tag}"
     }
 }
-
-
-
-
-
-output "public_IP"{
-  value = azurerm_public_ip.myterraformpublicip.ip_address
-}
-
