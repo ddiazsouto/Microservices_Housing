@@ -1,5 +1,5 @@
 
-output "public_IP"{
+output "public_IP_grab"{
   value = azurerm_public_ip.myterraformpublicip.ip_address
 }
 
@@ -8,12 +8,5 @@ output "tls_private_key" {
     sensitive = false
 }
 
-output "tls_public_key" {
-    value = tls_private_key.ssh_key.public_key_openssh
-    sensitive = false
-}
-
 output "private_ip"{
-    for_each  = toset(var.nic_name)
-    value     = [azurerm_network_interface.workers_nic[each.key].id]
-}
+    value = azurerm_network_interface.workers_nic[*]
