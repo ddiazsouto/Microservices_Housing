@@ -1,7 +1,7 @@
 cd Platform
 
 terraform apply -auto-approve
-
+rm llave
 terraform output | awk '/\-{4,}/,/<np>/' | head -n 52 > llave
 sudo chmod 400 llave
 
