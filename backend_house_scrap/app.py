@@ -10,11 +10,11 @@ count = 0
 @app.route('/', methods=['GET', 'POST'])
 def hello_world():
     
-    if request.methods == 'GET':
-        count += 1        
-        return count
+    
+    count += 1        
+    return count
 
-    return 'Backend_house_scrap'
+    #return 'Backend_house_scrap'
 
 
 if __name__ == '__main__':

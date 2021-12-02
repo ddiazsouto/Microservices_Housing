@@ -15,8 +15,8 @@ def hello_world():
     time.sleep(5)
 
     while(x == 9 and y == 9):
-        x = requests.get(http://localhost:5500/) #.json()
-        y = requests.get(http://localhost:5000/) #.json()
+        x = requests.get('http://localhost:5500/') #.json()
+        y = requests.get('http://localhost:5000/') #.json()
         return x, y
 
     return 'Master'
