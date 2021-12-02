@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+
+    master:
+      build: ./frontend_master
+      image: ddiazsouto/scraper_artillery:latest
+      ports:
+      - target: 5005
+        published: 5005
+        protocol: tcp
+
+    leader-node:
+      build: ./backend_url_gather
+      image: ddiazsouto/scraper_zapper:latest
+      ports: 
+      - target: 5500
+        published: 5500
+        protocol: tcp
+      environment:
+        PASSWD: ${PASSWD}
+
+    worker-node:
+      build: ./backend_house_scrap
+      image: ddiazsouto/scraper_pawns:latest
+      ports:
+      - target: 5000
+        published: 5000
+        protocol: tcp
+
