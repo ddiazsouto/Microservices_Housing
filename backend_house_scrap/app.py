@@ -1,11 +1,19 @@
 from flask import Flask, request
+import time 
+
 
 app = Flask(__name__)
 
+count = 0
 
 
 @app.route('/', methods=['GET', 'POST'])
 def hello_world():
+    
+    if request.methods == 'GET':
+        count += 1        
+        return count
+
     return 'Backend_house_scrap'
 
 
