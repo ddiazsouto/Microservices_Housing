@@ -6,8 +6,8 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def hello_world():
-    return 'Backend_url_gather'
+    return 'Master'
 
 
 if __name__ == '__main__':
-    app.run(port=5500, host='0.0.0.0', debug=True)
+    app.run(port=5005, host='0.0.0.0', debug=True)
