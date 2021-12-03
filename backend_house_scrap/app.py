@@ -1,5 +1,6 @@
 from flask import Flask, request
 import time 
+import datetime
 
 
 app = Flask(__name__)
@@ -13,7 +14,7 @@ def hello_world():
 
         minute = datetime.datetime.today().second
 
-        return 'leader, working' + minute
+        return 'leader, working' str(minute)
 
     return 'Backend_house_scrap'
 

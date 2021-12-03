@@ -1,5 +1,6 @@
 from flask import Flask, request
 import time
+import datetime
 
 app = Flask(__name__)
 
@@ -11,7 +12,7 @@ def hello_world():
 
         minute = datetime.datetime.today().second
 
-        return 'url_gather, working' + minute
+        return 'url_gather, working' + str(minute)
 
     return 'Backend_url_gather'
 
