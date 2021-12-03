@@ -14,9 +14,7 @@ def hello_world():
     y = requests.get('http://localhost:5000/') #.json()
 
 
-        return x+y
-
-    return 'Master'
+    return str(x + '\n' + y)
 
 
 if __name__ == '__main__':
