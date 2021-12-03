@@ -11,11 +11,11 @@ app = Flask(__name__)
 def hello_world():
 
 
-    x = requests.get('http://localhost:5500/') #.json()
-    y = requests.get('http://localhost:5000/') #.json()
+    x = requests.get('http://127.0.1.1:5500/').text #.json()
+    #y = requests.get('http://127.0.1.1:5000/').text #.json()
 
 
-    return str(x + '\n' + y)
+    return str(x)
 
 
 if __name__ == '__main__':
