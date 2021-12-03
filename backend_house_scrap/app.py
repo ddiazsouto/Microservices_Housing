@@ -11,10 +11,10 @@ count = 0
 def hello_world():
     
     
-    count += 1        
-    return count
+    if request.method == 'GET':
+        return 'leader, working'
 
-    #return 'Backend_house_scrap'
+    return 'Backend_house_scrap'
 
 
 if __name__ == '__main__':
