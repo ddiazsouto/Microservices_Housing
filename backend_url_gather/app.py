@@ -6,12 +6,10 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def hello_world():
+    if request.method == 'GET':
+        return 'url_gather, working'
 
-
-    count += 1        
-    return count
-
-    #return 'Backend_url_gather'
+    return 'Backend_url_gather'
 
 
 if __name__ == '__main__':
