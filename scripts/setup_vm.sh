@@ -7,6 +7,8 @@ sudo apt-get update
 sudo apt install curl -y
 curl https://get.docker.com | sudo bash
 
+usermod -aG docker $(whoami)
+
 echo "----Installing Docker-compose------"
 # make sure jq & curl is installed
 sudo apt update
