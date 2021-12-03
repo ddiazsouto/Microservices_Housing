@@ -14,7 +14,7 @@ def hello_world():
 
         minute = datetime.datetime.today().second
 
-        return 'leader, working' str(minute)
+        return 'leader, working' + str(minute)
 
     return 'Backend_house_scrap'
 
