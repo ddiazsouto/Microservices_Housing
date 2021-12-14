@@ -10,3 +10,4 @@ output "tls_private_key" {
 
 output "private_ip"{
     value = azurerm_network_interface.workers_nic[*]
+}

@@ -17,7 +17,7 @@ def hello_world():
     with open('IPs.txt', 'r') as f:
         var = f.readlines()
 
-    return str('var')
+    return str(var)
 
 
 if __name__ == '__main__':
