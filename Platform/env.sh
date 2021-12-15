@@ -1,11 +1,3 @@
-cd Platform
-
-terraform apply -auto-approve
-sudo chmod 666 llave
-rm -f llave
-terraform output | awk '/\-{4,}/,/<np>/' | head -n 52 > llave
-sudo chmod 400 llave
-
 ip=$(terraform output | grep public_IP_grab | awk '{print $3}' | tr -d '"' )
 workers=$(terraform output | grep 10.0 | awk '$2 {print $3}' | uniq | tr -d '"' )
 
@@ -17,4 +9,3 @@ echo $workers > ../frontend_master/IPs.txt
 worker1=$(echo $workers | cut -f1 -d" ")
 worker2=$(echo $workers | cut -f2 -d" ")
 worker3=$(echo $workers | cut -f3 -d" ")
-

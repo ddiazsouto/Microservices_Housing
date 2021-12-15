@@ -1,7 +1,7 @@
 ---
-- hosts: all
+- hosts: master
   become: yes
-  - name: 'download and install docker using apt'
+  name: 'download and install docker using apt'
   apt:
     pkg:
     - apt-transport-https
@@ -13,30 +13,34 @@
     - python3-pip
     state: latest
     update_cache: true
-  - name: add GPG key
-    apt_key:
-      url: https://download.docker.com/linux/ubuntu/gpg
-      state: present
-  - name: get Docky stuff
-    apt_repository:
-      repo: deb https://download.docker.com/linux/ubuntu bionic stable
-      state: present
-  - name: Update apt and install docker-ce
-    apt:
-      pkg:
-      - docker-ce
-      - docker-ce-cli
-      - containerd.io
-      state: latest
-      update_cache: true
-  - name: Install Docker SDK
-    pip:
-      name: docker-py
+  name: add GPG key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+  name: get Docky stuff
+  apt_repository:
+    repo: deb https://download.docker.com/linux/ubuntu bionic stable
+    state: present
+  name: Update apt and install docker-ce
+  apt:
+    pkg:
+    - docker-ce
+    - docker-ce-cli
+    - containerd.io
+    state: latest
+    update_cache: true
+  name: Install Docker SDK
+  pip:
+    name: docker-py
 
-      command: apt install curl -y
+    command: apt install curl -y
 
-  - name: Installing Docker-Compose
+  name: Installing Docker-Compose
   get_url:
     url : https://github.com/docker/compose/releases/download/1.29.2/docker-compose-Linux-x86_64
     dest: /usr/local/bin/docker-compose
     mode: 'u+x,g+x'
+
+  name: Running a docker container in the hosts machine
+  shell: 
+    "docker run -d -p 5005:5005 --name master ddiazsouto/scraper_artillery:latest"

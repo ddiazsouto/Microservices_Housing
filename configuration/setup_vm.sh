@@ -1,4 +1,11 @@
 #!/bin/bash
+
+######################################################################################
+##                                                                                  ##
+##     We have this file if there is need to prepare the environment manually       ##
+##                                                                                  ##
+######################################################################################
+
 # Installing Docker and docker compose
 sudo apt-get update
 
