@@ -62,7 +62,7 @@
         "docker run -d -p 5500:5500 --name master ddiazsouto/scraper_zapper:latest"
     - name: Executing ansible remotely to set up workers
       shell:
-        "ansible-playbook -i /root/config/inventory.yml /root/config/playbook.yml"
+        "ansible-playbook -i /home/master/config/inventory.yml /home/master/config/playbook.yml"
   handlers:
     - name: restart docker
       service:
