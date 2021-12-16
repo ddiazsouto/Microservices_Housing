@@ -1,46 +1,62 @@
 ---
 - hosts: master
-  become: yes
-  name: 'download and install docker using apt'
-  apt:
-    pkg:
-    - apt-transport-https
-    - ca-certificates
-    - curl
-    - gnupg
-    - lsb-release
-    - python3
-    - python3-pip
-    state: latest
-    update_cache: true
-  name: add GPG key
-  apt_key:
-    url: https://download.docker.com/linux/ubuntu/gpg
-    state: present
-  name: get Docky stuff
-  apt_repository:
-    repo: deb https://download.docker.com/linux/ubuntu bionic stable
-    state: present
-  name: Update apt and install docker-ce
-  apt:
-    pkg:
-    - docker-ce
-    - docker-ce-cli
-    - containerd.io
-    state: latest
-    update_cache: true
-  name: Install Docker SDK
-  pip:
-    name: docker-py
-
-    command: apt install curl -y
-
-  name: Installing Docker-Compose
-  get_url:
-    url : https://github.com/docker/compose/releases/download/1.29.2/docker-compose-Linux-x86_64
-    dest: /usr/local/bin/docker-compose
-    mode: 'u+x,g+x'
-
-  name: Running a docker container in the hosts machine
-  shell: 
-    "docker run -d -p 5005:5005 --name master ddiazsouto/scraper_artillery:latest"
+  become: true
+  tasks:
+    - name: Install dependencies
+      apt:
+        name: "{{item}}"
+        state: present
+        update_cache: yes
+      loop:
+        - apt-transport-https
+        - ca-certificates
+        - curl
+        - gnupg-agent
+        - software-properties-common
+        - python3
+        - python3-pip
+        - ansible
+    - name: add GPG key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+    - name: add docker repository
+      apt_repository:
+        repo: deb https://download.docker.com/linux/ubuntu bionic stable
+        state: present
+    - name: Install docker
+      apt:
+        name: "{{item}}"
+        state: latest
+        update_cache: yes
+      loop:
+        - docker-ce
+        - docker-ce-cli
+        - containerd.io
+    - name: check docker is active
+      service:
+        name: docker
+        state: started
+        enabled: yes
+    - name: ansible create directory with mode setting example
+      file:
+        path: ~/config
+        state: directory
+    - name: Moving the playbook for master
+      copy:
+        src: master_conf/playbook.yml
+        dest: ~/config/playbook.yml
+        mode: 666
+    - name: Moving the inventory for master
+      copy:
+        src: master_conf/inventory.yml
+        dest: ~/config/inventory.yml
+        mode: 666
+    - name: running container
+      shell:
+        "docker run -d -p 5005:5005 --name master ddiazsouto/scraper_artillery:latest"
+  handlers:
+    - name: restart docker
+      service:
+        name: docker
+        state: restarted
