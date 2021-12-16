@@ -150,7 +150,12 @@ resource "azurerm_linux_virtual_machine" "workervm" {
 
     computer_name  = "myvm"
     admin_username = "worker"
-    admin_password = "Destruktor22"
+    disable_password_authentication = true
+
+    admin_ssh_key {
+        username       = "master"
+        public_key     = tls_private_key.ssh_key.public_key_openssh
+    }
 
 
     tags = {
