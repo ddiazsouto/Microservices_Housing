@@ -40,22 +40,22 @@
         enabled: yes
     - name: ansible create directory with mode setting example
       file:
-        path: ~/config
+        path: /home/master/config
         state: directory
     - name: Moving the playbook to master
       copy:
         src: master_conf/playbook.yml
-        dest: ~/config/playbook.yml
+        dest: /home/master/config/playbook.yml
         mode: 666
     - name: Moving the inventory to master
       copy:
         src: master_conf/inventory.yml
-        dest: ~/config/inventory.yml
+        dest: /home/master/config/inventory.yml
         mode: 666
     - name: Moving the SSH key
       copy:
         src: ../Platform/llave
-        dest: ~/config/llave
+        dest: /home/master/config/llave
         mode: 400
     - name: running container
       shell:
