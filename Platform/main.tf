@@ -134,7 +134,6 @@ resource "azurerm_linux_virtual_machine" "workervm" {
     resource_group_name   = azurerm_resource_group.myterraformgroup.name
     network_interface_ids = [azurerm_network_interface.workers_nic[each.key].id]
     size                  = "Standard_DS1_v2"
-    disable_password_authentication = false
 
     os_disk {
         caching           = "ReadWrite"

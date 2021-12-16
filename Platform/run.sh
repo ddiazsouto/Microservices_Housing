@@ -1,4 +1,6 @@
 cd Platform
+cd ../Platform
+
 
 terraform apply -auto-approve
 sudo chmod 666 llave
