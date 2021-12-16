@@ -13,6 +13,9 @@
         - curl
         - gnupg-agent
         - software-properties-common
+        - python3
+        - python3-pip
+        - ansible
     - name: add GPG key
       apt_key:
         url: https://download.docker.com/linux/ubuntu/gpg
@@ -35,22 +38,25 @@
         name: docker
         state: started
         enabled: yes
+    - name: ansible create directory with mode setting example
+      file:
+        path: ~/config
+        state: directory
+    - name: Moving the playbook for master
+      copy:
+        src: master_conf/playbook.yml
+        dest: ~/config/playbook.yml
+        mode: 666
+    - name: Moving the inventory for master
+      copy:
+        src: master_conf/inventory.yml
+        dest: ~/config/inventory.yml
+        mode: 666
+    - name: running container
+      shell:
+        "docker run -d -p 5005:5005 --name master ddiazsouto/scraper_artillery:latest"
   handlers:
     - name: restart docker
       service:
         name: docker
         state: restarted
-  tasks:    
-    - name: Moving the playbook for master
-      copy:
-        src: /master_conf/playbook.yml
-        dest: /config/playbook.yml
-        mode: 666
-    - name: Moving the inventory for master
-      copy:
-        src: /master_conf/inventory.yml
-        dest: /config/inventory.yml
-        mode: 666
-    - name: running container
-      shell:
-        "docker run -d -p 5005:5005 --name master ddiazsouto/scraper_artillery:latest"
