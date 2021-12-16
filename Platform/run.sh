@@ -24,8 +24,8 @@ echo [master] > inventory.yml
 echo "master@$ip     ansible_ssh_private_key_file=~/Microservices_Housing/Platform/llave ">> inventory.yml
 
 echo [workers] > master_conf/inventory.yml
-echo "worker@$worker1       ansible_ssh_private_key_file=~/config/llave" >> master_conf/inventory.yml
-echo "worker@$worker2       ansible_ssh_private_key_file=~/config/llave" >> master_conf/inventory.yml
-echo "worker@$worker3       ansible_ssh_private_key_file=~/config/llave" >> master_conf/inventory.yml
+echo "worker@$worker1       ansible_ssh_private_key_file=/root/config/llave" >> master_conf/inventory.yml
+echo "worker@$worker2       ansible_ssh_private_key_file=/root/config/llave" >> master_conf/inventory.yml
+echo "worker@$worker3       ansible_ssh_private_key_file=/root/config/llave" >> master_conf/inventory.yml
 
 ansible-playbook -i inventory.yml playbook.yml

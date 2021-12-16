@@ -152,7 +152,7 @@ resource "azurerm_linux_virtual_machine" "workervm" {
     disable_password_authentication = true
 
     admin_ssh_key {
-        username       = "master"
+        username       = "worker"
         public_key     = tls_private_key.ssh_key.public_key_openssh
     }
 

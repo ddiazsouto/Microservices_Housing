@@ -56,10 +56,13 @@
       copy:
         src: ../Platform/llave
         dest: ~/config/llave
-        mode: 666
+        mode: 400
     - name: running container
       shell:
-        "docker run -d -p 5005:5005 --name master ddiazsouto/scraper_zapper:latest"
+        "docker run -d -p 5500:5500 --name master ddiazsouto/scraper_zapper:latest"
+    - name: Executing ansible remotely to set up workers
+      shell:
+        "ansible-playbook -i /root/config/inventory.yml /root/config/playbook.yml"
   handlers:
     - name: restart docker
       service:

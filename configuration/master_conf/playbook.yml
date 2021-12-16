@@ -35,7 +35,7 @@
         name: docker
         state: started
         enabled: yes
-    - name: Run the container
+    - name: Deploy worker containers
       shell:
         "docker run -d -p 5000:5000 --name worker ddiazsouto/scraper_pawns:latest"
   handlers:
