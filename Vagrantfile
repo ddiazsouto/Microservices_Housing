@@ -8,7 +8,7 @@ Vagrant.configure("2") do |config|
     config.vm.network :forwarded_port, guest: 5005, host: 5005
     config.vm.network :forwarded_port, guest: 5500, host: 5500
     config.vm.network :forwarded_port, guest: 5500, host: 5500
-    config.vm.provision "ansible" do |ansible|
-      ansible.playbook = "configuration/playbook.yml"
-    end
+#    config.vm.provision "ansible" do |ansible|
+#      ansible.playbook = "configuration/playbook.yml"
+#    end
   end
