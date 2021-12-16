@@ -21,4 +21,9 @@ cd configuration
 echo [master] > inventory.yml
 echo "master@$ip     ansible_ssh_private_key_file=~/Microservices_Housing/Platform/llave ">> inventory.yml
 
+echo [workers] > master_conf/inventory.yml
+echo "worker@$worker1" >> master_conf/inventory.yml
+echo "worker@$worker2" >> master_conf/inventory.yml
+echo "worker@$worker3" >> master_conf/inventory.yml
+
 ansible-playbook -i inventory.yml playbook.yml
