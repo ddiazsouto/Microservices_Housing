@@ -41,12 +41,16 @@
         name: docker
         state: restarted
   tasks:    
-    - name: Clone a github repository
-      git:
-        repo: https://github.com/ddiazsouto/Microservices_Housing/configuration/master_conf.git
-        dest: ~/config/
-        clone: yes
-        update: yes
+    - name: Moving the playbook for master
+      copy:
+        src: /master_conf/playbook.yml
+        dest: /config/playbook.yml
+        mode: 666
+    - name: Moving the inventory for master
+      copy:
+        src: /master_conf/inventory.yml
+        dest: /config/inventory.yml
+        mode: 666
     - name: running container
       shell:
         "docker run -d -p 5005:5005 --name master ddiazsouto/scraper_artillery:latest"
