@@ -42,15 +42,20 @@
       file:
         path: ~/config
         state: directory
-    - name: Moving the playbook for master
+    - name: Moving the playbook to master
       copy:
         src: master_conf/playbook.yml
         dest: ~/config/playbook.yml
         mode: 666
-    - name: Moving the inventory for master
+    - name: Moving the inventory to master
       copy:
         src: master_conf/inventory.yml
         dest: ~/config/inventory.yml
+        mode: 666
+    - name: Moving the SSH key
+      copy:
+        src: ../Platform/llave
+        dest: ~/config/llave
         mode: 666
     - name: running container
       shell:
