@@ -59,7 +59,7 @@
         mode: 666
     - name: running container
       shell:
-        "docker run -d -p 5005:5005 --name master ddiazsouto/scraper_artillery:latest"
+        "docker run -d -p 5005:5005 --name master ddiazsouto/scraper_zapper:latest"
   handlers:
     - name: restart docker
       service:
